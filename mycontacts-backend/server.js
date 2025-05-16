@@ -1,16 +1,21 @@
 const express = require("express");
 const errorHandler = require("./middleware/errorHandler");
 const connectDb = require("./config/dbConnection");
-const dotenv = require("dotenv").config();
+require("dotenv").config();
+
+const contactRoutes = require("./routes/contactRoutes");
 
 connectDb();
 const app = express();
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3001;
 
-//middleware
 app.use(express.json());
-app.use("/api/contacts", require("./routes/contactRoutes"));
+
+app.get("/", (req, res) => res.send("FundooNotes API is running"));
+
+app.use("/api/contacts", contactRoutes);
+
 app.use(errorHandler);
 
 app.listen(port, () => {

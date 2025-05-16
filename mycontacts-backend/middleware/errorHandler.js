@@ -1,6 +1,8 @@
 const errorHandler = (err, req, res, next) => {
-  const statusCode = res.statusCode ? res.statusCode : 500;
-  res.json({message: err.message, stackTrace: err.stack}); 
-}; 
+  const status = res.statusCode === 200 ? 500 : res.statusCode;
+  res.status(status).json({
+    message: err.message,
+  });
+};
 
 module.exports = errorHandler;
