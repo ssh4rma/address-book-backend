@@ -1,2 +1,0 @@
-> complete the errorHandler in middleware folder
-> 
