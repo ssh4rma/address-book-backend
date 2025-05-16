@@ -10,13 +10,13 @@ const app = express();
 
 const port = process.env.PORT || 3001;
 
-app.use(express.json());
+app.use(express.json()); //json middleware: which will parse the json data to JS object.
 
-app.get("/", (req, res) => res.send("FundooNotes API is running"));
+app.get("/", (req, res) => res.send("FundooNotes API is running")); //server get request for the root directory.
 
-app.use("/api/contacts", contactRoutes);
+app.use("/api/contacts", contactRoutes); //route middleware
 
-app.use(errorHandler);
+app.use(errorHandler); //error middleware
 
 app.listen(port, () => {
   console.log(`Server is running on the port ${port}`);
