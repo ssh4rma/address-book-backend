@@ -1,5 +1,9 @@
 const asyncHandler = require("express-async-handler");
 const Contact = require("../models/contactModel");
+const jwt = require("jsonwebtoken");
+
+const getTokens = (id) =>
+  jwt.sign({ id }, process.env.KEY, { expiresIn: "1d" });
 
 // GET all contacts
 const getContacts = asyncHandler(async (req, res) => {
